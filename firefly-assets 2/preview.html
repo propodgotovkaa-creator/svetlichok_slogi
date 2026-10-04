@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="ru"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Светлячок — проба крыльев</title>
+<style>
+*{box-sizing:border-box}body{margin:0;background:#142c37;color:#f8eccb;font:16px system-ui,sans-serif;min-height:100vh;display:grid;place-items:center}main{text-align:center;width:min(94vw,780px);padding:22px}h1{font-size:22px;font-weight:500;margin:0 0 6px}p{color:#b7cbd0;margin:0 0 12px;font-size:14px}.stage{height:min(68vh,650px);display:flex;justify-content:center;background:radial-gradient(ellipse,#254651 0%,#142c37 70%)}svg{height:100%;max-width:100%;overflow:visible}.left{transform-origin:502px 568px;animation:left 1.5s ease-in-out infinite}.right{transform-origin:727px 584px;animation:right 1.5s ease-in-out infinite} @keyframes left{0%,100%{transform:rotate(-2deg) scaleX(1)}50%{transform:rotate(3deg) scaleX(.86)}}@keyframes right{0%,100%{transform:rotate(2deg) scaleX(1)}50%{transform:rotate(-3deg) scaleX(.86)}}.paused .left,.paused .right{animation-play-state:paused}button{font:inherit;border:1px solid #8eaaac;background:#25414b;color:#fff4d5;border-radius:24px;padding:10px 20px;margin:10px 5px;cursor:pointer}button:focus-visible{outline:3px solid #ffdb83;outline-offset:3px}.syllable{font:bold 135px Arial,sans-serif;fill:#423527;letter-spacing:5px;pointer-events:none}.hidden{display:none}@media(prefers-reduced-motion:reduce){.left,.right{animation-play-state:paused}}
+</style>
+<main><h1>Мягкое порхание</h1><p>Проба движения · исходный фонарик сохранён</p><div class="stage">
+<svg viewBox="-55 -25 1342 1330" role="img" aria-label="Светлячок мягко машет крыльями и держит круглый фонарик">
+<defs>
+<path id="leftShape" d="M 0,180 H 390 L 448,399 Q 427,489 499,558 L 486,588 L 472,615 L 457,638 L 469,659 L 483,676 L 469,695 L 437,719 L 403,749 L 375,777 H 0 Z"/>
+<path id="rightShape" d="M 1232,215 H 885 L 783,402 Q 802,502 728,565 L 724,600 L 740,629 L 754,646 L 773,665 L 766,687 L 794,715 L 817,742 L 837,796 H 1232 Z"/>
+<clipPath id="leftClip"><use href="#leftShape"/></clipPath><clipPath id="rightClip"><use href="#rightShape"/></clipPath>
+<mask id="bodyMask" maskUnits="userSpaceOnUse" x="0" y="0" width="1232" height="1280"><rect width="1232" height="1280" fill="white"/><use href="#leftShape" fill="black"/><use href="#rightShape" fill="black"/></mask>
+</defs>
+<g class="left"><image href="firefly.png" width="1232" height="1280" clip-path="url(#leftClip)"/></g>
+<g class="right"><image href="firefly.png" width="1232" height="1280" clip-path="url(#rightClip)"/></g>
+<image href="firefly.png" width="1232" height="1280" mask="url(#bodyMask)"/>
+<text id="syllable" class="syllable hidden" x="606" y="1010" text-anchor="middle">МА</text>
+</svg></div><button id="pause" aria-pressed="false">Остановить крылья</button><button id="letters" aria-pressed="false">Пример слога</button></main>
+<script>
+const pause=document.querySelector('#pause'),letters=document.querySelector('#letters');
+pause.onclick=()=>{const stopped=document.body.classList.toggle('paused');pause.textContent=stopped?'Продолжить порхание':'Остановить крылья';pause.setAttribute('aria-pressed',String(stopped))};
+letters.onclick=()=>{const hidden=document.querySelector('#syllable').classList.toggle('hidden');letters.setAttribute('aria-pressed',String(!hidden));letters.textContent=hidden?'Пример слога':'Убрать слог'};
+</script></html>
